@@ -68,3 +68,4 @@ export default tseslint.config([
 ])
 ```
 # seniya-frontend-v2
+# seniya-frontend-v2

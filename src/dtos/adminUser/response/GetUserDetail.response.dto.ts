@@ -1,0 +1,11 @@
+import type { Course } from "../../../types/course.type";
+
+export interface GetUserDetailResponseDto {
+  userName: string;
+  phone: string;
+  roleName: string;
+  totalAmount: number;
+  totalCouponCount: number;
+  availableCouponCount: number;
+  courses: Course[];
+}

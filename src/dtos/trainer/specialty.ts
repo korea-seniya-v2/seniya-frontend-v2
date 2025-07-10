@@ -1,0 +1,6 @@
+export enum Specialty {
+  EXERCISE = "EXERCISE",
+  SLEEP = "SLEEP",
+  REHABILITATION = "REHABILITATION",
+  PSYCHOLOGY = "PSYCHOLOGY",
+}

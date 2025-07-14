@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import * as style from './header.style';
 import { useUserStore } from '../stores/user.store';
-import logoImage from '.././assets/logo.png';
-import mypageIcon from '.././assets/mypage.png';
-import logoutIcon from '.././assets/logout.png';
+import logoImage from '../components/logo.png';
+import mypageIcon from '../components/mypage.png';
+import logoutIcon from '../components/logout.png';
 
 const navItems = [
   {
@@ -28,8 +28,12 @@ const navItems = [
   {
     label: '트레이너',
     subItems: [
-      { name: '트레이너 권한 신청', path: '/trainer-application' },
-      { name: '트레이너 권한 조회', path: '/trainer-application/me' },
+      { name: '트레이너 권한 신청', path:'/trainer-application'},
+      { name: '트레이너 권한 조회', path:'/trainer-application/me'},
+      // { name: '트레이너 권한 신청목록', path:'/trainer-applications'},
+      // { name: '트레이너 프로필 생성', path: '/trainer-profile/create'},
+      // { name: '트레이너 프로필 조회', path: '/trainer-profile/view'},
+      // { name: '트레이너 프로필 수정', path: '/trainer-profile/edit'},
     ],
   },
   {
@@ -101,14 +105,14 @@ function Header() {
 
             <span>{user.name} 님</span>
             <img src={mypageIcon} alt="마이페이지" css={style.iconImage} onClick={() => {
-              if (user.role_id === 2) {
-                navigate('/users/me');
-              } else if (user.role_id === 3) {
-                navigate('/trainer-profile/view');
-              } else if (user.role_id === 1) {
-                navigate('/admin/users');
-              }
-            }} />
+                    if (user.role_id === 2) {
+                      navigate('/users/me');
+                    } else if (user.role_id === 3) {
+                      navigate('/trainer-profile/view');
+                    } else if (user.role_id === 1) {
+                      navigate('/admin/users');
+                    }
+                  }} />
             <img src={logoutIcon} alt="로그아웃" css={style.logoutIconImage} onClick={handleLogout} />
           </>
         ) : (

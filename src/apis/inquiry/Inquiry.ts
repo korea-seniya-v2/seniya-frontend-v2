@@ -91,9 +91,9 @@ export const inquiryAnswerRequest = async (
   dto: InquiryAnswerRequestDto
 ): Promise<ResponseDto<InquriyByIdResponseDto>> => {
   try {
-
+    
     const response = await axiosInstance.put(ANSWER_INQUIRY_URL(id), dto, {
-
+      
       withCredentials: true,
     });
     return responseSuccessHandler(response);

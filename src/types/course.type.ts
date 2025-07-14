@@ -1,3 +1,5 @@
+import type { TrainerProfile } from "./trainerProfile.type";
+
 export interface Course {
   courseId: number;
   trainerName: string;

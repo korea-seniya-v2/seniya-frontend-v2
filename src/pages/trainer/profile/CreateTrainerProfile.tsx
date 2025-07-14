@@ -22,8 +22,8 @@ import {
   addCertButton,
   sideStyle,
   removeCertButton,
-} from "./TrainerProfile.style";
-import { createProfile, getMyProfile } from "../../../apis/trainer/profile";
+} from "./TrainerProfile.style"; // 스타일 임포트 경로 확인
+import { createProfile, getMyProfile } from "../../../apis/trainer/profile"; // createProfile API
 import { useNavigate } from "react-router-dom";
 import type { TrainerProfileRequestDto } from "../../../dtos/trainer/request/trainerProfile.request.dto";
 import { Specialty } from "../../../dtos/trainer/specialty";

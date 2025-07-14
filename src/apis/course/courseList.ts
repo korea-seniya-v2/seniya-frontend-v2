@@ -75,7 +75,7 @@ export const applyCourse = async (courseId: number): Promise<ResponseDto<any>> =
         headers: {
           Authorization: token ? `Bearer ${token}` : "",
         },
-        withCredentials: true,
+        withCredentials: true, 
       }
     );
     return responseSuccessHandler(response);

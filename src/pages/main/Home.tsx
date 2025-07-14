@@ -35,7 +35,7 @@ function Home() {
     }
   }, [user]);
 
-  const handleLogout = () => {
+  const handleLogout = () => {   // zustand 상태 초기화
     Cookies.remove("user");
     Cookies.remove("token");
     alert("로그아웃 되었습니다.");
@@ -46,12 +46,16 @@ function Home() {
   return (
     <>
       <Header />
+
+
       <Banner />
       <QuickSearch />
       <PopularSection />
       <VideoSection />
       <NoticeSection />
       <TermsSection />
+
+
       <Footer />
     </>
   );

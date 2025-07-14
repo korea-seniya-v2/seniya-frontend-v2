@@ -11,7 +11,7 @@ function Footer() {
 
       <div css={[section, links]}>
         <a href="/">홈</a>
-        <a href="https://github.com/korea-seniya-v2" target="_blank" rel="noreferrer">
+        <a href="https://github.com/korea-seniya" target="_blank" rel="noreferrer">
           깃허브
         </a>
       </div>

@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
+// 전체 페이지 수평 레이아웃 (AsideBar + PurchasePass)
 export const pageWrapper = css`
   display: flex;
   max-width: 1200px;

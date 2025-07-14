@@ -106,7 +106,7 @@ function CourseList() {
                 title: updatedCourse.title,
                 classDate: updatedCourse.classDate,
                 category: updatedCourse.category,
-                updatedAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(), // 수정일자 갱신
                 classroom: updatedCourse.classroom,
               }
               : course

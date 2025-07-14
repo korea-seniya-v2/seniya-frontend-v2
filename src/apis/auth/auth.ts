@@ -22,7 +22,7 @@ export interface SignInForm {
 
 // 비밀번호 재설정 폼 타입
 export interface ResetPasswordForm {
-  token: string;
+  token: string;    
   newPassword: string;
 }
 

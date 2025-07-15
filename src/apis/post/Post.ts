@@ -11,7 +11,7 @@ import { POST_LIST_URL, POST_SEARCH_BY_TITLE_URL } from "../constants";
 
 export const getPopularPosts = async (): Promise<ResponseDto<PopularPostResponseDto[]>> => {
   try {
-    const response = await axiosInstance.get("/api/v1/posts/popular");
+    const response = await axiosInstance.get("/api/v2/posts/popular");
     return responseSuccessHandler(response);
   } catch (error) {
     return responseErrorHandler(error as AxiosError<ResponseDto>);
@@ -29,7 +29,7 @@ export const getPostList = async (): Promise<ResponseDto<PostListResponseDto[]>>
 
 export const getPostDetail = async (postId: number): Promise<ResponseDto<PostDetailResponseDto>> => {
   try {
-    const response = await axiosInstance.get(`/api/v1/posts/${postId}`);
+    const response = await axiosInstance.get(`/api/v2/posts/${postId}`);
     return responseSuccessHandler(response);
   } catch (error) {
     return responseErrorHandler(error as AxiosError<ResponseDto>);
@@ -54,7 +54,7 @@ export const createPost = async (
 
     const token = Cookies.get("token");;
 
-    const response = await axiosInstance.post("/api/v1/posts", formData, {
+    const response = await axiosInstance.post("/api/v2/posts", formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -81,7 +81,7 @@ export const updatePost = async (
     formData.append("data", new Blob([JSON.stringify(dto)], { type: "application/json" }));
     files.forEach(file => formData.append("file", file));
 
-    const response = await axiosInstance.post(`/api/v1/posts/${postId}`, formData, {
+    const response = await axiosInstance.post(`/api/v2/posts/${postId}`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
@@ -97,7 +97,7 @@ export const updatePost = async (
 
 export const deletePost = async (postId: number, token: string): Promise<ResponseDto<any>> => {
   try {
-    const response = await axiosInstance.delete(`/api/v1/posts/${postId}`, {
+    const response = await axiosInstance.delete(`/api/v2/posts/${postId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -110,7 +110,7 @@ export const deletePost = async (postId: number, token: string): Promise<Respons
 
 export const searchPosts = async (title: string): Promise<ResponseDto<PostListResponseDto[]>> => {
   try {
-    const response = await axiosInstance.get(`/api/v1/posts/search-by-title`, {
+    const response = await axiosInstance.get(`/api/v2/posts/search-by-title`, {
       params: { title },
     });
     return responseSuccessHandler(response);
@@ -121,7 +121,7 @@ export const searchPosts = async (title: string): Promise<ResponseDto<PostListRe
 
 export const searchPostsByRole = async (roleName: string): Promise<ResponseDto<PostListResponseDto[]>> => {
   try {
-    const response = await axiosInstance.get('/api/v1/posts/search-by-role', {
+    const response = await axiosInstance.get('/api/v2/posts/search-by-role', {
       params: { roleName },
     });
     return responseSuccessHandler(response);

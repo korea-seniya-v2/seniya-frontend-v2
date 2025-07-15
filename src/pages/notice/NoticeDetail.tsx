@@ -30,7 +30,7 @@ function NoticeDetail() {
   const user = useUserStore((state) => state.user);
 
   useEffect(() => {
-    axiosInstance.get(`/api/v1/notices/${id}`)
+    axiosInstance.get(`/api/v2/notices/${id}`)
       .then((res) => {
         console.log("공지 상세 응답:", res.data);
         setNotice(res.data.data);
@@ -49,7 +49,7 @@ function NoticeDetail() {
 
   const handleDelete = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      axiosInstance.delete(`/api/v1/notices/${id}`)
+      axiosInstance.delete(`/api/v2/notices/${id}`)
         .then(() => {
           alert("삭제되었습니다.");
           navigate("/notices");

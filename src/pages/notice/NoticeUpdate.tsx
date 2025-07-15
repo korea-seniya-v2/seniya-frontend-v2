@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { axiosInstance } from '../../apis/axiosConfig';
-import Header from '../../components/header'; 
+import Header from '../../components/header';
 
 import {
   containerStyle,
@@ -32,7 +32,7 @@ function NoticeUpdate() {
       return;
     }
 
-    axiosInstance.get(`/api/v1/notices/${id}`)
+    axiosInstance.get(`/api/v2/notices/${id}`)
       .then((res) => {
         const notice = res.data.data;
         setTitle(notice.title);
@@ -51,7 +51,7 @@ function NoticeUpdate() {
       return;
     }
 
-    axiosInstance.put(`/api/v1/notices/${id}`, {
+    axiosInstance.put(`/api/v2/notices/${id}`, {
       title,
       content,
     })

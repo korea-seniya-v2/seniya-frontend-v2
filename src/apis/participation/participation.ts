@@ -8,8 +8,8 @@ import type { Participation } from '../../pages/participation/participation';
 
 export const getMyParticipations = async (): Promise<Participation[]> => {
   try {
-    const res = await axiosInstance.get('/api/v1/participation/me');
-    return res.data; 
+    const res = await axiosInstance.get('/api/v2/participation/me');
+    return res.data;
   } catch (error) {
     throw responseErrorHandler(error);
   }
@@ -18,7 +18,7 @@ export const getMyParticipations = async (): Promise<Participation[]> => {
 
 export const cancelParticipation = async (id: number) => {
   try {
-    const res = await axiosInstance.delete(`/api/v1/participation/${id}`);
+    const res = await axiosInstance.delete(`/api/v2/participation/${id}`);
     return responseSuccessHandler(res);
   } catch (error) {
     throw responseErrorHandler(error);

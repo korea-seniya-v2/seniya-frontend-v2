@@ -65,7 +65,7 @@ export const popularTrainer = async (): Promise<
 
 export const getTopNotices = async (): Promise<ResponseDto<NoticeList[]>> => {
   try {
-    const response = await axiosInstance.get('/api/v1/notices/top?limit=5');
+    const response = await axiosInstance.get('/api/v2/notices/top?limit=5');
     return responseSuccessHandler(response);
   } catch (error) {
     return responseErrorHandler(error as AxiosError<ResponseDto>);

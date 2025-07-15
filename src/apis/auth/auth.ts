@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // 백엔드 기본 URL
-const API_BASE_URL = 'http://localhost:8080/api/v1/auth';
+const API_BASE_URL = 'http://localhost:8080/api/v2/auth';
 
 // 회원가입 폼 타입
 export interface SignUpForm {
@@ -22,7 +22,7 @@ export interface SignInForm {
 
 // 비밀번호 재설정 폼 타입
 export interface ResetPasswordForm {
-  token: string;    
+  token: string;
   newPassword: string;
 }
 

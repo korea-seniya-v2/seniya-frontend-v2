@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 function CreateCourse() {
   const navigate = useNavigate();
 
-
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -87,46 +86,106 @@ function CreateCourse() {
       <Header />
       <AdminSidebar />
       <div css={style.containerStyle}>
-        <h6 css={style.h6Style}>수업 제목</h6>
-        <input type="text" placeholder='수업 제목' name='title' value={form.title} onChange={onInputChange} css={style.inputStyle} />
+        <h1 css={style.titleStyle}>수업 개설</h1>
 
-        <h6 css={style.h6Style}>수업 설명</h6>
-        <input type="text" placeholder='수업 설명' name='description' value={form.description} onChange={onInputChange} css={style.inputStyle} />
+        <div css={style.formGroupStyle}>
+          <h6 css={style.h6Style}>수업 제목</h6>
+          <input
+            type="text"
+            placeholder='수업 제목을 입력하세요'
+            name='title'
+            value={form.title}
+            onChange={onInputChange}
+            css={style.inputStyle}
+          />
+        </div>
 
-        <h6 css={style.h6Style}>수업 날짜</h6>
-        <input
-          type="date"
-          placeholder="수업 날짜"
-          name="classDate"
-          value={form.classDate ? form.classDate.split('T')[0] : ''}
-          onChange={onInputChange}
-          css={style.inputStyle}
-        />
+        <div css={style.formGroupStyle}>
+          <h6 css={style.h6Style}>수업 설명</h6>
+          <input
+            type="text"
+            placeholder='수업에 대한 설명을 입력하세요'
+            name='description'
+            value={form.description}
+            onChange={onInputChange}
+            css={style.inputStyle}
+          />
+        </div>
 
-        <h6 css={style.h6Style}>수업 시간</h6>
-        <input type="time" placeholder='수업 시작 시간' name='classStartTime' value={form.classStartTime} onChange={onInputChange} css={style.inputStyle} />
-        <span> - </span>
-        <input type="time" placeholder='수업 종료 시간' name='classEndTime' value={form.classEndTime} onChange={onInputChange} css={style.inputStyle} />
+        <div css={style.formGroupStyle}>
+          <h6 css={style.h6Style}>수업 날짜</h6>
+          <input
+            type="date"
+            placeholder="수업 날짜"
+            name="classDate"
+            value={form.classDate ? form.classDate.split('T')[0] : ''}
+            onChange={onInputChange}
+            css={style.inputStyle}
+          />
+        </div>
 
-        <h6 css={style.h6Style}>카테고리</h6>
-        <select
-          name="category"
-          value={form.category}
-          onChange={onInputChange}
-          css={style.inputStyle}
-        >
-          <option value="" disabled>카테고리를 선택하세요</option>
-          <option value="SLEEP">SLEEP</option>
-          <option value="REHABILITATION">REHABILITATION</option>
-          <option value="EXERCISE">EXERCISE</option>
-          <option value="PSYCHOLOGY">PSYCHOLOGY</option>
-        </select>
+        <div css={style.formGroupStyle}>
+          <h6 css={style.h6Style}>수업 시간</h6>
+          <div css={style.timeContainerStyle}>
+            <input
+              type="time"
+              placeholder='수업 시작 시간'
+              name='classStartTime'
+              value={form.classStartTime}
+              onChange={onInputChange}
+              css={style.inputStyle}
+            />
+            <span>~</span>
+            <input
+              type="time"
+              placeholder='수업 종료 시간'
+              name='classEndTime'
+              value={form.classEndTime}
+              onChange={onInputChange}
+              css={style.inputStyle}
+            />
+          </div>
+        </div>
 
-        <h6 css={style.h6Style}>강의장</h6>
-        <input type="text" placeholder='강의장' name='classroom' value={form.classroom} onChange={onInputChange} css={style.inputStyle} />
+        <div css={style.formGroupStyle}>
+          <h6 css={style.h6Style}>카테고리</h6>
+          <select
+            name="category"
+            value={form.category}
+            onChange={onInputChange}
+            css={style.selectStyle}
+          >
+            <option value="" disabled>카테고리를 선택하세요</option>
+            <option value="SLEEP">SLEEP</option>
+            <option value="REHABILITATION">REHABILITATION</option>
+            <option value="EXERCISE">EXERCISE</option>
+            <option value="PSYCHOLOGY">PSYCHOLOGY</option>
+          </select>
+        </div>
 
-        <h6 css={style.h6Style}>트레이너 ID</h6>
-        <input type="text" placeholder='트레이너 ID' name='trainerId' value={form.trainerId} onChange={onInputChange} css={style.inputStyle} />
+        <div css={style.formGroupStyle}>
+          <h6 css={style.h6Style}>강의장</h6>
+          <input
+            type="text"
+            placeholder='강의장을 입력하세요'
+            name='classroom'
+            value={form.classroom}
+            onChange={onInputChange}
+            css={style.inputStyle}
+          />
+        </div>
+
+        <div css={style.formGroupStyle}>
+          <h6 css={style.h6Style}>트레이너 ID</h6>
+          <input
+            type="number"
+            placeholder='트레이너 ID를 입력하세요'
+            name='trainerId'
+            value={form.trainerId}
+            onChange={onInputChange}
+            css={style.inputStyle}
+          />
+        </div>
 
         <button onClick={createCourseClick} css={style.buttonStyle}>
           수업 개설

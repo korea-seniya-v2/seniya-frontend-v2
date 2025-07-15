@@ -65,7 +65,6 @@ function UserList() {
       <div css={style.pageWrapper}>
         <AdminSidebar />
         <main css={style.contentWrapper}>
-          <h2 css={style.titleStyle}>사용자 목록</h2>
           <div css={style.tableContainer}>
             <table css={style.tableStyle}>
               <thead>

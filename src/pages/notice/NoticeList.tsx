@@ -26,7 +26,7 @@ const NoticeList = () => {
   const isAdmin = isLogin && user?.role_id === 1;
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/v1/notices")
+    axios.get("http://localhost:8080/api/v2/notices")
       .then((res) => {
         const data = res.data?.data;
         if (Array.isArray(data)) {
@@ -46,7 +46,7 @@ const NoticeList = () => {
   }, []);
 
   return (
-  <>
+    <>
       <Header />
       <div css={containerStyle}>
         <h1 css={titleStyle}>공지사항</h1>

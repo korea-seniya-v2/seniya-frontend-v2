@@ -1,18 +1,18 @@
 export const API_DOMAIN = import.meta.env.REACT_APP_API_DOMAIN || "http://localhost:8080";
 
-const AUTH_MODULE_URL = `${API_DOMAIN}/api/v1/auth`;
+const AUTH_MODULE_URL = `${API_DOMAIN}/api/v2/auth`;
 export const SIGN_UP_URL = `${AUTH_MODULE_URL}/signup`;
 export const SIGN_IN_URL = `${AUTH_MODULE_URL}/login`;
 
-const FILE_MODULE_URL = `${API_DOMAIN}/api/v1/files`;
+const FILE_MODULE_URL = `${API_DOMAIN}/api/v2/files`;
 export const UPLOAD_FILE_URL = `${FILE_MODULE_URL}/upload`;
 
-const HEALTH_DATA_URL = `${API_DOMAIN}/api/v1/health-data`;
+const HEALTH_DATA_URL = `${API_DOMAIN}/api/v2/health-data`;
 export const CREATE_HEALTHDATA_URL = `${HEALTH_DATA_URL}`;
 export const GET_HEALTHDATA_URL = `${HEALTH_DATA_URL}/me`;
 export const PUT_HEALTHDATA_URL = `${HEALTH_DATA_URL}/update`;
 
-const INQUIRY_MODULE_URL = `${API_DOMAIN}/api/v1/inquiries`;
+const INQUIRY_MODULE_URL = `${API_DOMAIN}/api/v2/inquiries`;
 export const CREATE_INQUIRY_URL = `${INQUIRY_MODULE_URL}`;
 export const GET_MY_INQUIRY_URL = `${INQUIRY_MODULE_URL}/me`;
 export const GET_ALL_INQUIRY_URL = `${INQUIRY_MODULE_URL}`;
@@ -21,44 +21,44 @@ export const PUT_INQUIRY_URL = (id: number) => `${INQUIRY_MODULE_URL}/${id}`;
 export const DELETE_INQUIRY_URL = (id: number) => `${INQUIRY_MODULE_URL}/${id}`;
 export const ANSWER_INQUIRY_URL = (id: number) => `${INQUIRY_MODULE_URL}/${id}/response`;
 
-export const USER_LIST_URL = `${API_DOMAIN}/api/v1/admin/users`;
-export const USER_DETAIL_URL = `${API_DOMAIN}/api/v1/admin/users`;
-export const COURSE_LIST_URL = `${API_DOMAIN}/api/v1/admin/courses`;
-export const PAYMENT_REQUEST_URL = `${API_DOMAIN}/api/v1/payments/request`;
-export const PAYMENT_LIST_URL = `${API_DOMAIN}/api/v1/payments`;
-export const PAYMENT_CONFIRM_URL = `${API_DOMAIN}/api/v1/payments/confirm`;
+export const USER_LIST_URL = `${API_DOMAIN}/api/v2/admin/users`;
+export const USER_DETAIL_URL = `${API_DOMAIN}/api/v2/admin/users`;
+export const COURSE_LIST_URL = `${API_DOMAIN}/api/v2/admin/courses`;
+export const PAYMENT_REQUEST_URL = `${API_DOMAIN}/api/v2/payments/request`;
+export const PAYMENT_LIST_URL = `${API_DOMAIN}/api/v2/payments`;
+export const PAYMENT_CONFIRM_URL = `${API_DOMAIN}/api/v2/payments/confirm`;
 
-export const POST_LIST_URL = `${API_DOMAIN}/api/v1/posts`;
-export const POST_SEARCH_BY_TITLE_URL = `${API_DOMAIN}/api/v1/posts/search-by-title`;
-export const POST_SEARCH_BY_ROLE_URL = `${API_DOMAIN}/api/v1/posts/search-by-role`;
+export const POST_LIST_URL = `${API_DOMAIN}/api/v2/posts`;
+export const POST_SEARCH_BY_TITLE_URL = `${API_DOMAIN}/api/v2/posts/search-by-title`;
+export const POST_SEARCH_BY_ROLE_URL = `${API_DOMAIN}/api/v2/posts/search-by-role`;
 export const POST_DETAIL_URL = (id: number) => `${POST_LIST_URL}/${id}`;
 
-export const USER_COURSE_LIST_URL = `${API_DOMAIN}/api/v1/courses`;
+export const USER_COURSE_LIST_URL = `${API_DOMAIN}/api/v2/courses`;
 export const COURSE_SEARCH_BY_TRAINER_URL = (trainerName: string) =>
-  `${API_DOMAIN}/api/v1/courses/public?trainerName=${trainerName}`;
+  `${API_DOMAIN}/api/v2/courses/public?trainerName=${trainerName}`;
 export const COURSE_SEARCH_BY_CATEGORY_URL = (category: string) =>
-  `${API_DOMAIN}/api/v1/courses/public?category=${category}`;
+  `${API_DOMAIN}/api/v2/courses/public?category=${category}`;
 
-const TRAINER_APPLY_MODULE_URL = `${API_DOMAIN}/api/v1/trainer-applications`;
+const TRAINER_APPLY_MODULE_URL = `${API_DOMAIN}/api/v2/trainer-applications`;
 export const CREATE_APPLY_URL = `${TRAINER_APPLY_MODULE_URL}`;
 export const MY_APPLY_URL = `${TRAINER_APPLY_MODULE_URL}/me`;
 
-const ADMIN_TRAINER_MODULE_URL = `${API_DOMAIN}/admin/api/v1/trainer-applications`
+const ADMIN_TRAINER_MODULE_URL = `${API_DOMAIN}/admin/api/v2/trainer-applications`
 export const ALL_APPLY_URL = `${ADMIN_TRAINER_MODULE_URL}`;
 export const APPLY_DETAIL_URL = (id: number) => `${ADMIN_TRAINER_MODULE_URL}/${id}`;
 export const APPLY_CHANGE_URL = (id: number) => `${ADMIN_TRAINER_MODULE_URL}/${id}`;
 
-const TRAINER_PROFILE_MODULE_URL = `${API_DOMAIN}/api/v1/trainer-profiles`;
+const TRAINER_PROFILE_MODULE_URL = `${API_DOMAIN}/api/v2/trainer-profiles`;
 export const CREATE_PROFILE_URL = `${TRAINER_PROFILE_MODULE_URL}/me`;
 export const UPDATE_PROFILE_URL = `${TRAINER_PROFILE_MODULE_URL}/me`;
 export const GET_PROFILE_URL = `${TRAINER_PROFILE_MODULE_URL}/me`;
 export const POPULARTRAINER_URL = `${TRAINER_PROFILE_MODULE_URL}/popular`;
 
-export const QUICK_SEARCH_URL = `${API_DOMAIN}/api/v1/courses/filter`;
-export const TODAY_COURSE_URL = `${API_DOMAIN}/api/v1/courses/filter/today`;
+export const QUICK_SEARCH_URL = `${API_DOMAIN}/api/v2/courses/filter`;
+export const TODAY_COURSE_URL = `${API_DOMAIN}/api/v2/courses/filter/today`;
 
-export const USER_URL = `${API_DOMAIN}/api/v1/users/me`;
-export const PUT_USER_URL = `${API_DOMAIN}/api/v1/users/me`;
-export const DELETE_USER_URL = `${API_DOMAIN}/api/v1/users/me`;
+export const USER_URL = `${API_DOMAIN}/api/v2/users/me`;
+export const PUT_USER_URL = `${API_DOMAIN}/api/v2/users/me`;
+export const DELETE_USER_URL = `${API_DOMAIN}/api/v2/users/me`;
 
-export const USER_PASS_URL = `${API_DOMAIN}/api/v1/passes/me`;
+export const USER_PASS_URL = `${API_DOMAIN}/api/v2/passes/me`;

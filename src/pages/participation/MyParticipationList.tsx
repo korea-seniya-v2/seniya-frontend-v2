@@ -15,7 +15,7 @@ import CancelModal from './CancelModal';
 
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '../../stores/user.store';
-import Header from '../../components/header'; 
+import Header from '../../components/header';
 
 function MyParticipationList() {
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ function MyParticipationList() {
 
   return (
     <>
-      <Header /> 
+      <Header />
       <div css={containerStyle}>
         <h2 css={titleStyle}>나의 수업 신청 목록</h2>
 

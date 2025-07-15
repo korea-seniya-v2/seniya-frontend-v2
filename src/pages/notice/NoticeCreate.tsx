@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/header'; 
+import Header from '../../components/header';
 
 import {
   containerStyle,
@@ -37,7 +37,7 @@ function NoticeCreate() {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/api/v1/notices', {
+      const response = await fetch('http://localhost:8080/api/v2/notices', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ function NoticeCreate() {
 
   return (
     <>
-      <Header /> 
+      <Header />
       <div css={containerStyle}>
         <h1 css={titleStyle}>공지 작성</h1>
 

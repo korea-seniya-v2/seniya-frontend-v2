@@ -42,7 +42,7 @@ function CourseListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { isLogin } = useUserStore(); 
+  const { isLogin } = useUserStore();
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -59,14 +59,28 @@ function CourseListPage() {
           const dto = { category, trainer, classDate, classStartTime, classEndTime };
           const response = await quickSearch(dto);
           if (response.code === 'SU' && Array.isArray(response.data)) {
-            setFilteredCourses(response.data as GetUserCourseListResponseDto[]);
-            setAllCourses(response.data as GetUserCourseListResponseDto[]);
+            const mappedData = response.data.map((item) => ({
+              courseId: item.id,
+              title: item.title,
+              description: item.description,
+              category: item.category,
+              classDate: item.classDate,
+              classStartTime: item.classStartTime,
+              classEndTime: item.classEndTime,
+              classroom: item.classroom,
+              name: item.name
+            }));
+
+            setFilteredCourses(mappedData);
+            setAllCourses(mappedData);
+
           } else {
             setFilteredCourses([]);
             setAllCourses([]);
           }
         } else {
           const response = await getCourseList();
+          console.log(response);
           setFilteredCourses(response);
           setAllCourses(response);
         }
@@ -129,7 +143,7 @@ function CourseListPage() {
     if (!isLogin) {
       alert('로그인이 필요합니다.');
       navigate('/login');
-      return; 
+      return;
     }
 
     if (!selectedCourseDetail) return;
@@ -161,7 +175,7 @@ function CourseListPage() {
 
   return (
     <>
-    <Header />
+      <Header />
       <div css={postContainer}>
         <h1 css={nameStyle}>수업 목록</h1>
 

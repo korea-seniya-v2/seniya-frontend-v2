@@ -36,7 +36,7 @@ export const getAdminCourseList = async (): Promise<ResponseDto<GetCourseListRes
 
 export const searchCoursesByTrainer = async (trainerName: string): Promise<ResponseDto<GetUserCourseListResponseDto[]>> => {
   try {
-    const response = await axiosInstance.get('/api/v1/courses', {
+    const response = await axiosInstance.get('/api/v2/courses', {
       params: { trainerName },
     });
     return responseSuccessHandler(response);
@@ -47,7 +47,7 @@ export const searchCoursesByTrainer = async (trainerName: string): Promise<Respo
 
 export const searchCoursesByCategory = async (category: string): Promise<ResponseDto<GetUserCourseListResponseDto[]>> => {
   try {
-    const response = await axiosInstance.get('/api/v1/courses', {
+    const response = await axiosInstance.get('/api/v2/courses', {
       params: { category },
     });
     return responseSuccessHandler(response);
@@ -58,7 +58,7 @@ export const searchCoursesByCategory = async (category: string): Promise<Respons
 
 export const getCourseById = async (id: number): Promise<ResponseDto<GetUserCourseDetailResponseDto>> => {
   try {
-    const response = await axiosInstance.get(`/api/v1/courses/${id}`);
+    const response = await axiosInstance.get(`/api/v2/courses/${id}`);
     return responseSuccessHandler(response);
   } catch (error) {
     return responseErrorHandler(error as AxiosError<ResponseDto>);
@@ -69,13 +69,13 @@ export const applyCourse = async (courseId: number): Promise<ResponseDto<any>> =
   try {
     const token = getCookie("token");
     const response = await axiosInstance.post(
-      `/api/v1/courses/${courseId}`,
+      `/api/v2/courses/${courseId}`,
       {},
       {
         headers: {
           Authorization: token ? `Bearer ${token}` : "",
         },
-        withCredentials: true, 
+        withCredentials: true,
       }
     );
     return responseSuccessHandler(response);

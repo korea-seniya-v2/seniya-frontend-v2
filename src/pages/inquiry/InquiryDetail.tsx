@@ -1,31 +1,31 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
-
-import {
-  containerStyle,
-  titleStyle,
-  divStyle,
-  spanStyle,
-  pStyle,
-  h2Style,
-  contentStyle,
-  buttonStyle,
-  buttonWrapperStyle,
-  answerDivStyle,
-  lineStyle,
-  answerPStyle,
-  strongStyle,
-  textareaStyle,
-} from "./InquiryDetail.style";
-import type { InquriyByIdResponseDto } from "../../dtos/inquiry/response/inquiryDetail.response";
 import { useNavigate, useParams } from "react-router-dom";
+import type { InquriyByIdResponseDto } from "../../dtos/inquiry/response/inquiryDetail.response";
 import {
   deleteInquiryRequest,
   getInquiryDetailRequest,
 } from "../../apis/inquiry/Inquiry";
-import type { AxiosError } from "axios";
 import Header from "../../components/header";
 import { useUserStore } from "../../stores/user.store";
+import {
+  containerStyle,
+  titleStyle,
+  detailSectionStyle,
+  detailHeaderStyle,
+  detailTitleStyle,
+  detailMetaStyle,
+  detailContentStyle,
+  imageStyle,
+  answerSectionStyle,
+  answerTitleStyle,
+  answerContentStyle,
+  answerAdminStyle,
+  noAnswerStyle,
+  buttonContainerStyle,
+  primaryButtonStyle,
+  secondaryButtonStyle,
+} from "../inquiry/inquiry.style";
 
 function InquiryDetail() {
   const { id } = useParams<{ id: string }>();
@@ -36,89 +36,97 @@ function InquiryDetail() {
 
   useEffect(() => {
     const fetchInquiry = async () => {
+      if (isNaN(inquiryId)) {
+        alert("잘못된 접근입니다.");
+        navigate("/");
+        return;
+      }
       const response = await getInquiryDetailRequest(inquiryId);
       if (response.code === "SU" && response.data) {
+        console.log(response.data);
         setInquiry(response.data);
       } else {
-        alert("권한이 없습니다. 문의 목록으로 이동합니다.");
-        navigate("/inquiries");
+        alert(response.message || "문의를 불러오는 데 실패했습니다.");
+        navigate(-1);
       }
     };
     fetchInquiry();
   }, [inquiryId, navigate]);
 
-  const onClickUpdate = () => {
-    if (inquiry?.response === null) {
-      navigate(`/inquiry/${inquiryId}/update`);
-    }
-  };
-
-  
-  const onClickAnswer = () => {
-  
-    navigate(`/inquiry/${inquiryId}/response`);
-  };
-
   const deleteInquiry = async () => {
-  
     if (window.confirm("정말로 문의를 삭제하시겠습니까?")) {
-      await deleteInquiryRequest(inquiryId);
-      alert("게시글이 삭제되었습니다.");
-      navigate("/inquiries");
+      const response = await deleteInquiryRequest(inquiryId);
+      if (response.code === "SU") {
+        alert("게시글이 삭제되었습니다.");
+        navigate("/inquiries/me");
+      } else {
+        alert(response.message || "삭제에 실패했습니다.");
+      }
     }
   };
 
-  const isAuthor = user?.name === inquiry?.username; 
-  const isTrainer = user?.role_id === 3;
+  const isAdmin = user?.role_id === 1;
+  const isAuthor = user?.username === inquiry?.username;
 
   return (
-        <>
-    <Header />
-    <div css={containerStyle}>
-      <h1 css={titleStyle}>문 의</h1>
-      <div css={divStyle}>
-        <h2 css={h2Style}>{inquiry?.title}</h2>
-        <p css={pStyle}>
-          <strong>{inquiry?.username}</strong>
-          <span css={spanStyle}>{inquiry?.createdAt}</span>
-        </p>
-        <div css={lineStyle} />
-        <div css={contentStyle}>{inquiry?.content}</div>
-        <div css={lineStyle} />
-
-        <h2 css={h2Style}>문의 답변</h2>
-        {inquiry?.response ? (
-          <>
-            <div css={answerDivStyle}>
-              <p css={answerPStyle}>
-                <strong css={strongStyle}>{inquiry?.trainerName}</strong>
-              </p>
-              <div css={lineStyle} />
-              <div css={textareaStyle}>{inquiry.response}</div>
-            </div>
-          </>
-        ) : (
-          <div>아직 답변이 등록되지 않았습니다.</div>
-        )}
-        <div css={buttonWrapperStyle}>
-            {isTrainer && !inquiry?.response && (
-              <button css={buttonStyle} onClick={onClickAnswer}>
+    <>
+      <Header />
+      <div css={containerStyle}>
+        <h1 css={titleStyle}>문의 상세</h1>
+        <div css={detailSectionStyle}>
+          <div css={detailHeaderStyle}>
+            <h2 css={detailTitleStyle}>{inquiry?.title}</h2>
+            <p css={detailMetaStyle}>
+              <strong>{inquiry?.username}</strong>
+              <span>
+                {inquiry?.createdAt &&
+                  new Date(inquiry.createdAt).toLocaleString()}
+              </span>
+            </p>
+          </div>
+          <div css={detailContentStyle}>
+            {inquiry?.content}
+            {inquiry?.inquiryImageUrl && inquiry.inquiryImageUrl.length > 0 && (
+              <div>
+                {inquiry.inquiryImageUrl.map((url, index) => (
+                  <img
+                    key={index}
+                    src={`http://localhost:8080${url}`}
+                    alt={`첨부 이미지 ${index + 1}`}
+                    css={imageStyle}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          <div css={answerSectionStyle}>
+            <h2 css={answerTitleStyle}>문의 답변</h2>
+            {inquiry?.answer ? (
+              <div css={answerContentStyle}>
+                <p css={answerAdminStyle}>{inquiry?.admin || "관리자"}</p>
+                <div>{inquiry.answer}</div>
+              </div>
+            ) : (
+              <div css={noAnswerStyle}>아직 답변이 등록되지 않았습니다.</div>
+            )}
+          </div>
+          <div css={buttonContainerStyle}>
+            {isAdmin && !inquiry?.answer && (
+              <button
+                css={primaryButtonStyle}
+                onClick={() => navigate(`/admin/inquiry/${inquiryId}/answer`)}
+              >
                 답변하기
               </button>
             )}
-            {isAuthor && !inquiry?.response && (
-              <button css={buttonStyle} onClick={onClickUpdate}>
-                수정
-              </button>
-            )}
             {isAuthor && (
-              <button css={buttonStyle} onClick={deleteInquiry}>
+              <button css={secondaryButtonStyle} onClick={deleteInquiry}>
                 삭제
               </button>
             )}
           </div>
+        </div>
       </div>
-    </div>
     </>
   );
 }

@@ -19,7 +19,7 @@ export const GET_ALL_INQUIRY_URL = `${INQUIRY_MODULE_URL}`;
 export const GET_INQUIRY_DETAIL_URL = (id: number) => `${INQUIRY_MODULE_URL}/${id}`;
 export const PUT_INQUIRY_URL = (id: number) => `${INQUIRY_MODULE_URL}/${id}`;
 export const DELETE_INQUIRY_URL = (id: number) => `${INQUIRY_MODULE_URL}/${id}`;
-export const ANSWER_INQUIRY_URL = (id: number) => `${INQUIRY_MODULE_URL}/${id}/response`;
+export const ANSWER_INQUIRY_URL = (id: number) => `${INQUIRY_MODULE_URL}/${id}/answer`;
 
 export const USER_LIST_URL = `${API_DOMAIN}/api/v2/admin/users`;
 export const USER_DETAIL_URL = `${API_DOMAIN}/api/v2/admin/users`;

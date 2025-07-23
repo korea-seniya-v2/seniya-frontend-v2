@@ -1,10 +1,10 @@
 export interface InquriyByIdResponseDto{
     title: string;
     username: string;
-    trainerName?: string;
     content: string;
-    response?: string;
-    isPrivated: boolean;
+    admin: string;
+    answer: string;
+    inquiryImageUrl: string[];
     createdAt: string;
     updatedAt: string;
 }

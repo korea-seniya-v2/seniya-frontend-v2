@@ -30,10 +30,6 @@ const navItems = [
     subItems: [
       { name: '트레이너 권한 신청', path:'/trainer-application'},
       { name: '트레이너 권한 조회', path:'/trainer-application/me'},
-      // { name: '트레이너 권한 신청목록', path:'/trainer-applications'},
-      // { name: '트레이너 프로필 생성', path: '/trainer-profile/create'},
-      // { name: '트레이너 프로필 조회', path: '/trainer-profile/view'},
-      // { name: '트레이너 프로필 수정', path: '/trainer-profile/edit'},
     ],
   },
   {
@@ -46,8 +42,7 @@ const navItems = [
   {
     label: '고객센터',
     subItems: [
-      { name: '문의 목록', path: '/inquiries' },
-      { name: '문의 생성', path: '/inquiry' }
+      { name: '문의사항', path: '/inquiries/me' }
     ],
   },
 ];

@@ -17,11 +17,9 @@ import RequireRole from "./stores/RequireRole";
 import NoticeCreate from "./pages/notice/NoticeCreate";
 import EmailSend from "./pages/user/EmailSend";
 import ResetPassword from "./pages/user/ResetPassword";
-import InquiryListPage from "./pages/inquiry/InquiryListPage";
 import InquiryCreate from "./pages/inquiry/InquiryCreate";
+import MyInquiryListPage from "./pages/inquiry/MyInquiryListPage";
 import InquiryDetail from "./pages/inquiry/InquiryDetail";
-import InquiryUpdate from "./pages/inquiry/InquiryUpdate";
-import InquiryAnswer from "./pages/inquiry/InquiryAnswer";
 import TrainerApplication from "./pages/trainer/application/TrainerApplication";
 import MyTrainerApplicationStatus from "./pages/trainer/application/MyTrainerApplicationStatus";
 import TrainerApplicationList from "./pages/trainer/application/TrainerApplicationList";
@@ -49,6 +47,8 @@ import Facility from "./pages/main/CenterInfo/Facility";
 import Location from "./pages/main/CenterInfo/Location";
 import UserPassPage from "./pages/userPass/UserPassPage";
 import AdminRoute from "./routes/AdminRoute";
+import AllInquiries from "./pages/inquiry/AllInquiryList";
+import InquiryAnswer from "./pages/inquiry/InquiryAnswer";
 
 
 
@@ -95,11 +95,12 @@ function App() {
       <Route path='/users/me/email-send' element={<EmailSend />} />
       <Route path='/users/me/password-reset' element={<ResetPassword />} />
 
-      <Route path='/inquiries' element={<InquiryListPage />} />
+      <Route path='/inquiries/me' element={<MyInquiryListPage />} />
       <Route path='/inquiry' element={<InquiryCreate />} />
       <Route path='/inquiry/:id' element={<InquiryDetail />} />
-      <Route path='/inquiry/:id/update' element={<InquiryUpdate />} />
-      <Route path='/inquiry/:id/response' element={<InquiryAnswer />} />
+      <Route path='/admin/inquiries' element={<AllInquiries />} />
+      <Route path='/admin/inquiry/:id/answer' element={<InquiryAnswer />} />
+
 
       <Route path='/trainer-application' element={<TrainerApplication />} />
       <Route path='/trainer-application/me' element={<MyTrainerApplicationStatus />} />

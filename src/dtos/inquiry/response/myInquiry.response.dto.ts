@@ -1,11 +1,10 @@
 import type { InquiryStatus } from "../inquiryStatus";
 
-export interface AllInquiryResponseDto{
+export interface GetMyInquiryResponseDto {
     inquiryId: number;
     title: string;
-    username: string;
-    content: string;
     status: InquiryStatus;
     createdAt: string;
     updatedAt: string;
+    
 }

@@ -1,60 +1,47 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { InquiryRequestDto } from "../../dtos/inquiry/request/inquiry.request.dto";
+import { createInquiryRequest } from "../../apis/inquiry/Inquiry";
+import Header from "../../components/header";
 import {
   containerStyle,
   titleStyle,
-  labelStyle,
+  formStyle,
   inputStyle,
-  buttonStyle,
-  contentStyle,
-  divStyle,
-  buttonWrapperStyle,
-  checkboxStyle,
-  label2Style,
-} from "./InquiryCreate.style";
-
-import { createInquiryRequest } from "../../apis/inquiry/Inquiry";
-import type { InquiryRequestDto } from "../../dtos/inquiry/request/inquiry.request.dto";
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/header";
+  textareaStyle,
+  buttonContainerStyle,
+  primaryButtonStyle,
+  secondaryButtonStyle,
+} from "../inquiry/inquiry.style"
 
 function InquiryCreate() {
+  const navigate = useNavigate();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
-  const [isPrivated, setIsPrivated] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
-  const navigate = useNavigate();
+  const [files, setFiles] = useState<File[]>([]);
 
-  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFiles(Array.from(e.target.files));
+    }
   };
 
-  const onContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-
-  const onIsPrivatedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsPrivated(e.target.checked);
-  };
-
-  const onSubmit = async () => {
-    if (!title || !content) {
-      setMessage("제목과 내용 모두 입력해주세요.");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!title.trim() || !content.trim()) {
+      alert("제목과 내용을 모두 입력하세요.");
       return;
     }
 
-    const requestBody: InquiryRequestDto = {
-      title,
-      content,
-      isPrivated,
-    };
+    const dto: InquiryRequestDto = { title, content };
+    const response = await createInquiryRequest(dto, files);
 
-    const response = await createInquiryRequest(requestBody);
     if (response.code === "SU") {
-      alert("문의 등록 완료.");
-      navigate("/inquiries");
+      alert("문의가 등록되었습니다.");
+      navigate("/inquiries/me");
     } else {
-      setMessage(response.message);
+      alert(response.message || "문의 등록에 실패했습니다.");
     }
   };
 
@@ -63,38 +50,35 @@ function InquiryCreate() {
       <Header />
       <div css={containerStyle}>
         <h1 css={titleStyle}>문의 작성</h1>
-        <div css={divStyle}>
-          <label css={labelStyle}>제목</label>
+        <form onSubmit={handleSubmit} css={formStyle}>
           <input
             css={inputStyle}
             type="text"
-            value={title}
-            onChange={onTitleChange}
             placeholder="제목을 입력하세요"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
-          <label css={label2Style}>
-            <input
-              type="checkbox"
-              checked={isPrivated}
-              onChange={onIsPrivatedChange}
-              css={checkboxStyle}
-            />
-            비밀글
-          </label>
-        </div>
-        <textarea
-          css={contentStyle}
-          value={content}
-          onChange={onContentChange}
-          placeholder="문의 내용을 입력해주세요"
-        ></textarea>
-        <div css={buttonWrapperStyle}>
-          <button css={buttonStyle} type="submit" onClick={onSubmit}>
-            등록
-          </button>
-          <button css={buttonStyle}>취소</button>
-        </div>
-        {<p>{message}</p>}
+          <textarea
+            css={textareaStyle}
+            placeholder="내용을 입력하세요"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <input
+            css={inputStyle}
+            type="file"
+            multiple
+            onChange={handleFileChange}
+          />
+          <div css={buttonContainerStyle}>
+            <button type="button" css={secondaryButtonStyle} onClick={() => navigate(-1)}>
+              취소
+            </button>
+            <button type="submit" css={primaryButtonStyle}>
+              등록
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );

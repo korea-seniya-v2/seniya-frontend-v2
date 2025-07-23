@@ -5,6 +5,7 @@ import type { PaymentResponseDto } from "../../dtos/payment/response/Payment.res
 import { PAYMENT_CONFIRM_URL, PAYMENT_LIST_URL, PAYMENT_REQUEST_URL } from "../constants";
 import type { CreatePaymentRequestDto } from "../../dtos/payment/request/CreatePayment.request.dto";
 import type { GetPaymentListResponseDto } from "../../dtos/payment/response/GetPaymentList.response.dto";
+import type { ConfirmPaymentRequestDto } from "../../dtos/payment/request/ConfirmPayment.request.dto";
 
 function getCookie(name: string): string | null {
   const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));

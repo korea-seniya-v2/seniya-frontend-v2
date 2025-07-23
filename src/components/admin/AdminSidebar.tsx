@@ -13,6 +13,8 @@ function AdminSidebar() {
         <Link to="/admin/courses" css={style.LinkStyle}>수업 전체 목록</Link>
         <Link to="/admin/create-course" css={style.LinkStyle}>수업 개설</Link>
         <Link to="/admin/payments" css={style.LinkStyle}>결제 승인</Link>
+        <Link to="/admin/inquiries" css={style.LinkStyle}>문의 목록</Link>
+        
       </nav>
     </div>
   );
